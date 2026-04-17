@@ -48,6 +48,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: container-scan
     steps:
+      - name: Build image
+        run: docker build --no-cache -t devsecops-lab:${{ github.sha }} .
       - name: Run container (simulate staging)
         run: docker run -d -p 3000:3000 devsecops-lab:${{ github.sha }}
 
